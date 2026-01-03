@@ -5,14 +5,18 @@ from .models.task import Task  # Import all models to register them
 from .models.user import User
 
 
-# In a real implementation, this would come from environment variables
-# Using SQLite for local development
+# Using SQLite for Railway deployment compatibility
 import os
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./todo_app.db")
 
-
-# Create the engine
-engine = create_engine(DATABASE_URL, echo=True)
+# For SQLite, we need to handle the URL differently
+if DATABASE_URL.startswith("sqlite"):
+    # SQLite URLs should use three slashes for relative paths
+    connect_args = {"check_same_thread": False}
+    engine = create_engine(DATABASE_URL, echo=True, connect_args=connect_args)
+else:
+    # For PostgreSQL
+    engine = create_engine(DATABASE_URL, echo=True)
 
 
 def create_db_and_tables():
