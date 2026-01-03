@@ -2,22 +2,36 @@
 
 from datetime import datetime
 from typing import Optional
-from sqlmodel import Field, SQLModel
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
-class TaskBase(SQLModel):
+Base = declarative_base()
+
+
+class Task(Base):
+    """Task model for the database."""
+    __tablename__ = "tasks"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String, index=True)
+    title = Column(String, nullable=False)
+    description = Column(String, nullable=True)
+    completed = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now)
+
+
+# Pydantic models for API
+from pydantic import BaseModel
+
+
+class TaskBase(BaseModel):
     """Base model for task with common fields."""
-    title: str = Field(min_length=1)
+    title: str
     description: Optional[str] = None
     completed: bool = False
-
-
-class Task(TaskBase, table=True):
-    """Task model for the database."""
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: str  # Removed foreign key constraint for development
-    created_at: datetime = Field(default_factory=datetime.now)
-    updated_at: datetime = Field(default_factory=datetime.now)
 
 
 class TaskCreate(TaskBase):
@@ -25,9 +39,9 @@ class TaskCreate(TaskBase):
     pass
 
 
-class TaskUpdate(SQLModel):
+class TaskUpdate(BaseModel):
     """Model for updating an existing task."""
-    title: Optional[str] = Field(default=None, min_length=1)
+    title: Optional[str] = None
     description: Optional[str] = None
     completed: Optional[bool] = None
 

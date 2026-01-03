@@ -1,7 +1,8 @@
 """Database setup for the Todo Full-Stack Web Application."""
 
-from sqlmodel import create_engine, Session
-from .models.task import Task  # Import all models to register them
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from .models.task import Task, Base  # Import all models to register them
 from .models.user import User
 
 
@@ -18,15 +19,20 @@ else:
     # For PostgreSQL
     engine = create_engine(DATABASE_URL, echo=True)
 
+# Create session maker
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 def create_db_and_tables():
     """Create database tables."""
     # Create all tables
-    Task.metadata.create_all(bind=engine)
-    User.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
 
 
 def get_session():
     """Get database session."""
-    with Session(engine) as session:
-        yield session
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
