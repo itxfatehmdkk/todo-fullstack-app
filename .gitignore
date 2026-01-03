@@ -163,3 +163,8 @@ runtime.txt
 
 # Windows scripts temp
 nul
+
+# Database files
+*.db
+*.db.*
+todo_app.db
