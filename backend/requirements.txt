@@ -1,8 +1,8 @@
 fastapi==0.108.0
 sqlmodel==0.0.29
-pydantic==2.10.3
+pydantic==2.5.0
 uvicorn==0.24.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.5
 better-exceptions==0.3.3
 python-jose==3.3.0
 passlib==1.7.4
