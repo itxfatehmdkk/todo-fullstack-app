@@ -3,6 +3,7 @@ sqlmodel==0.0.29
 pydantic==2.5.0
 uvicorn==0.24.0
 aiosqlite==0.19.0
+SQLAlchemy==2.0.45
 better-exceptions==0.3.3
 python-jose==3.3.0
 passlib==1.7.4
