@@ -1,24 +1,41 @@
-<!-- SYNC IMPACT REPORT
-Version change: 2.0.0 → 2.1.0
-List of modified principles: N/A
-Added sections: UI/UX Enhancement Principles section (12. UI/UX Enhancement Principles)
-Removed sections: N/A
-Templates requiring updates: ⚠ pending .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
-Follow-up TODOs: None
--->
-
 ---
+id: 2
+title: Amend Constitution to v2
+stage: constitution
+date: 2025-12-28
+surface: agent
+model: Claude Sonnet 4.5
+feature: full-stack
+branch: main
+user: Fateh Mohammad
+command: sp.constitution
+labels: [constitution, governance, todo-app, full-stack]
+links:
+  spec: null
+  ticket: null
+  adr: null
+  pr: null
+files:
+ - .specify/memory/constitution.md
+tests:
+ - none
+---
+
+## Prompt
+
+```text
+update the current constitution.md file with the updated constitution.md file; which is given below ''' ---
 id: 2
 title: Evolution of Todo – Phase II Constitution
 stage: constitution
-date: 2025-12-31
+date: 2025-12-28
 surface: agent
 model: Claude Sonnet 4.5
 feature: full-stack
 branch: master
 user: Fateh Mohammad
 command: sp.constitution
-labels: [constitution, governance, todo-app, full-stack, ui-ux]
+labels: [constitution, governance, todo-app, full-stack]
 links:
   spec: null
   ticket: null
@@ -162,25 +179,35 @@ Phase II is complete only when:
 
 ---
 
-### 12. UI/UX Enhancement Principles
-The application must follow a modern, clean, minimal, and professional design standard comparable to high-quality task management apps (e.g., Todoist, TickTick).
+**Version**: 2.0.0 | **Ratified**: 2025-12-28 | **Last Amended**: 2025-12-28
+'''
+```
 
-The UI must be responsive, mobile-first, accessible, and user-centric.
+## Response snapshot
 
-Tailwind CSS must be used exclusively for styling, with TypeScript-safe components.
+The constitution.md file has been successfully updated from version 1.0.0 to 2.0.0. The new constitution now covers both Phase I (CLI app) and Phase II (Full-stack web app) specifications, including:
 
-Dark mode must be supported using Tailwind's dark: variant and a class-based or next-themes strategy.
+- Multi-user web application with persistent storage
+- Frontend: Next.js 14+, TypeScript, Tailwind CSS
+- Backend: Python FastAPI with SQLModel ORM
+- Database: Neon Serverless PostgreSQL
+- Authentication: Better Auth with JWT tokens
+- Task ownership enforcement for all users
+- Spec-driven development workflow
 
-Visual consistency is mandatory (typography, spacing, colors, shadows).
+The update includes a sync impact report showing the version change from 1.0.0 to 2.0.0, and all required sections have been properly updated.
 
-Animations and transitions must be subtle, performant, and non-distracting.
+## Outcome
 
-Authentication must not block UI exploration; write actions require authentication.
+- ✅ Impact: Updated constitution from v1.0.0 to v2.0.0, expanding scope to include Phase II full-stack web application requirements
+- 🧪 Tests: none
+- 📁 Files: Updated .specify/memory/constitution.md with new constitution content covering both Phase I and Phase II
+- 🔁 Next prompts: Ready to proceed with Phase II feature specifications and implementation
+- 🧠 Reflection: Constitution now properly defines scope for both CLI and full-stack web application phases
 
-Accessibility is a first-class requirement (keyboard navigation, focus states, ARIA where needed).
+## Evaluation notes (flywheel)
 
-Performance must be prioritized; no heavy UI libraries unless clearly justified.
-
----
-
-**Version**: 2.1.0 | **Ratified**: 2025-12-28 | **Last Amended**: 2025-12-31
+- Failure modes observed: none
+- Graders run and results (PASS/FAIL): PASS
+- Prompt variant (if applicable): N/A
+- Next experiment (smallest change to try): Begin Phase II feature specifications

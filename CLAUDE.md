@@ -1,4 +1,4 @@
-# Claude Code Rules
+﻿# Claude Code Rules
 
 This file is generated during init for the selected agent.
 
@@ -205,6 +205,35 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 - `history/prompts/` — Prompt History Records
 - `history/adr/` — Architecture Decision Records
 - `.specify/` — SpecKit Plus templates and scripts
+
+## Technology Stack
+
+- **Frontend**: Next.js 14+, TypeScript, Tailwind CSS
+- **Backend**: Python FastAPI with SQLModel ORM
+- **Database**: Neon Serverless PostgreSQL
+- **Authentication**: Better Auth with JWT tokens
+- **Project Type**: Full-stack web application with separate frontend and backend
+
+## Project Overview & Workflow
+
+### Project Structure
+- `frontend/` - Next.js application with TypeScript and Tailwind CSS
+- `backend/` - Python FastAPI server with SQLModel ORM
+- `specs/` - Specification files for features and requirements
+- `history/` - Prompt History Records and Architecture Decision Records
+
+### Development Workflow
+1. **Specification Phase**: Define requirements in `/specs/{feature}/spec.md`
+2. **Planning Phase**: Create architecture plan in `/specs/{feature}/plan.md`
+3. **Task Breakdown**: Generate implementation tasks in `/specs/{feature}/tasks.md`
+4. **Implementation**: Execute tasks following spec-driven development
+5. **Testing**: Validate against original specifications
+
+### Feature Implementation
+- All features follow the pattern: `specs/{number}-{feature-name}/`
+- Each feature has dedicated spec.md, plan.md, and tasks.md files
+- Implementation follows the task breakdown in tasks.md
+- Changes are tracked in Prompt History Records under `history/prompts/{feature-name}/`
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
